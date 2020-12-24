@@ -9,79 +9,79 @@ function HTMLActuator() {
   this.results = [
     {
       id: 2,
-      title: "Шоколадный Дед Мороз",
+      title: "Новый уровень мечтаний! <br/> Шоколадный Дед Мороз",
       img: "",
       text:
         "Классика! Всем нам было ясно в детстве, кто главный в новогоднем сладком подарке.",
     },
     {
       id: 4,
-      title: "Сетка с мандаринами",
+      title: "Новый уровень мечтаний! <br/>  Сетка с мандаринами",
       img: "",
       text:
         "По мере взросления, конечно, начинаешь больше следить за здоровьем и новогоднее настроение больше создают мандарины, чем сладости. А именно о нем и мечтается — хочется, чтобы оно просто было.",
     },
     {
       id: 8,
-      title: "Теплые шерстяные варежки",
+      title: "Новый уровень мечтаний! <br/>  Теплые шерстяные варежки",
       img: "",
       text:
         "Где оно детство, когда любой мороз нипочем и можно копаться в сугробах несколько часов кряду? Теперь подавайте уют, да шапку с варежками потеплее.",
     },
     {
       id: 16,
-      title: "Шар со снегом",
+      title: "Новый уровень мечтаний! <br/>  Шар со снегом",
       img: "",
       text: "Не стесняйтесь желать новогоднего настроения и волшебства!",
     },
     {
       id: 32,
-      title: "Коробочка с сюрпризом",
+      title: "Новый уровень мечтаний! <br/> Коробочка с сюрпризом",
       img: "",
       text:
         "Кто не любит сюрпризы? Не хотим ничего решать, пусть нас просто удивят!",
     },
     {
       id: 64,
-      title: "Коньки",
+      title: "Новый уровень мечтаний! <br/> Коньки",
       img: "",
       text:
         "Массовых гуляний ждать в этом году не приходится, поэтому хотя бы на каток выбраться нужно, а то совсем грустные выйдут каникулы.",
     },
     {
       id: 128,
-      title: "Зимняя экипировка",
+      title: "Новый уровень мечтаний! <br/> Зимняя экипировка",
       img: "",
       text:
         "Раз уж мы мечтаем, то можно загадать себе и новое увлечение и все атрибуты к нему. Адреналин бодрит, да и здоровье скажет «спасибо» за лишнюю спортивную активность.",
     },
     {
       id: 256,
-      title: "Курсы английского",
+      title: "Новый уровень мечтаний! <br/> Курсы английского",
       img: "",
       text:
         "Давайте мечтать еще смелее. Пора учить главный международный язык, ведь границы рано или поздно откроют, и мы все точно рванем путешествовать. Надо подготовиться. Тем более, у Boxberry можно <a href='https://promo.boxberry.ru/' class='link' target='_blank'>выиграть</a> такой курс бесплатно.",
     },
     {
       id: 512,
-      title: "Билет на концерт любимой группы",
+      title: "Новый уровень мечтаний! <br/> Билет на концерт любимой группы",
       img: "",
       text:
         "Осторожно заглядываемся на самые больные темы. Только представьте — снова толпа в зале, все подпевают знакомый текст, все счастливы, танцуют и обнимаются. Чтобы мечталось убедительнее, попробуйте делать это с закрытыми глазами и в наушниках, которые вы, кстати, тоже можете <a href='https://promo.boxberry.ru/' class='link' target='_blank'>выиграть</a> вместе с Boxberry.",
     },
     {
       id: 1024,
-      title: "Путевка в путешествие",
+      title: "Новый уровень мечтаний! <br/> Путевка в путешествие",
       img: "",
       text:
         "Не стесняемся сделать следующий шаг и позволим себе помечтать о приключениях и поездках в новом году!",
     },
     {
       id: 2048,
-      title: "Новенький iPhone",
+      title: "Это победа!",
       img: "",
       text:
-        "Это победа! В нашей игре вы достигли желаемого. В качестве главного блюда берем вполне реальный, но ценный и многими желанный подарок — iPhone 12. А за настоящий iPhone 12 стоит побороться в <a href='https://promo.boxberry.ru/' class='link' target='_blank'>конкурсе от Boxberry</a>!",
+        "В нашей игре вы достигли желаемого. В качестве главного блюда берем вполне реальный, но ценный и многими желанный подарок — iPhone 12. А за настоящий iPhone 12 стоит побороться в <a href='https://promo.boxberry.ru/' class='link' target='_blank'>конкурсе от Boxberry</a>!",
     },
   ];
 }
@@ -97,7 +97,6 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
     grid.cells.forEach(function (column) {
       column.forEach(function (cell) {
         if (cell) {
-          // self.showPopup(cell, metadata.pointsState);
           self.addTile(cell);
         }
       });
@@ -207,13 +206,22 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 };
 
 HTMLActuator.prototype.message = function (won) {
+  console.error("message", won);
   var type = won ? "game-won" : "game-over";
+  var title = won ? "Это победа!" : "А мечтам нет предела!";
   var message = won
     ? "Это победа! В нашей игре вы достигли желаемого. В качестве главного блюда берем вполне реальный, но ценный и многими желанный подарок — iPhone 12. А за настоящий iPhone 12 стоит побороться в <a href='https://promo.boxberry.ru/' class='link' target='_blank'>конкурсе от Boxberry</a>!"
-    : "А мечтам нет предела! Выучить новый язык? Оторваться на концерте любимой группы? Отправиться в путешествие? Если вы вели себя хорошо в этом году, то все должно сбыться, а для верности попробуйте все же дойти до этих подарков в нашей игре!";
+    : "Выучить новый язык? Оторваться на концерте любимой группы? Отправиться в путешествие? Если вы вели себя хорошо в этом году, то все должно сбыться, а для верности попробуйте все же дойти до этих подарков в нашей игре!";
 
   this.messageContainer.classList.add(type);
+  this.messageContainer.getElementsByTagName("h3")[0].innerHTML = title;
   this.messageContainer.getElementsByTagName("p")[0].innerHTML = message;
+
+  // показываем кнопки
+  if (type) {
+    this.messageContainer.getElementsByClassName("lower")[0].style.display =
+      "block";
+  }
 };
 
 HTMLActuator.prototype.clearMessage = function () {
@@ -221,22 +229,26 @@ HTMLActuator.prototype.clearMessage = function () {
   this.messageContainer.classList.remove("game-won");
   this.messageContainer.classList.remove("game-over");
 
-  this.messageContainer.getElementsByTagName("h3")[0].textContent = "";
-  this.messageContainer.getElementsByTagName("p")[0].textContent = "";
+  this.messageContainer.getElementsByTagName("h3")[0].innerHTML = "";
+  this.messageContainer.getElementsByTagName("p")[0].innerHTML = "";
+
+  this.messageContainer.getElementsByClassName("lower")[0].style.display =
+    "none";
 };
 
 HTMLActuator.prototype.showPopup = function (cell) {
-  // if (cell.value >= 4) {
   if (cell.value >= 256) {
     var message = this.results.filter((item) => item.id === cell.value)[0];
 
     this.messageContainer.classList.add("game-won");
-    this.messageContainer.getElementsByTagName("h3")[0].textContent =
+    this.messageContainer.getElementsByTagName("h3")[0].innerHTML =
       message.title;
     this.messageContainer.getElementsByTagName("p")[0].innerHTML = message.text;
 
-    setTimeout(() => {
-      this.clearMessage();
-    }, 7000);
+    if (cell.value < 2048) {
+      setTimeout(() => {
+        this.clearMessage();
+      }, 7000);
+    }
   }
 };
