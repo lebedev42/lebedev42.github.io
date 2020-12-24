@@ -60,21 +60,28 @@ function HTMLActuator() {
       title: "Курсы английского",
       img: "",
       text:
-        "Давайте мечтать еще смелее. Пора учить главный международный язык, ведь границы рано или поздно откроют и мы все точно рванем путешествовать. Надо подготовиться. Тем более, у Boxberry можно <a href='https://promo.boxberry.ru/' target='_blank'>выиграть</a> такой курс бесплатно.",
+        "Давайте мечтать еще смелее. Пора учить главный международный язык, ведь границы рано или поздно откроют, и мы все точно рванем путешествовать. Надо подготовиться. Тем более, у Boxberry можно <a href='https://promo.boxberry.ru/' class='link' target='_blank'>выиграть</a> такой курс бесплатно.",
     },
     {
       id: 512,
+      title: "Билет на концерт любимой группы",
+      img: "",
+      text:
+        "Осторожно заглядываемся на самые больные темы. Только представьте — снова толпа в зале, все подпевают знакомый текст, все счастливы, танцуют и обнимаются. Чтобы мечталось убедительнее, попробуйте делать это с закрытыми глазами и в наушниках, которые вы, кстати, тоже можете <a href='https://promo.boxberry.ru/' class='link' target='_blank'>выиграть</a> вместе с Boxberry.",
+    },
+    {
+      id: 1024,
       title: "Путевка в путешествие",
       img: "",
       text:
         "Не стесняемся сделать следующий шаг и позволим себе помечтать о приключениях и поездках в новом году!",
     },
     {
-      id: 1024,
-      title: "Билет на концерт любимой группы",
+      id: 2048,
+      title: "Новенький iPhone",
       img: "",
       text:
-        "Осторожно заглядываемся на самые больные темы. Только представьте — снова толпа в зале, все подпевают знакомый текст, все счастливы, танцуют и обнимаются. Чтобы мечталось убедительнее, попробуйте делать это с закрытыми глазами и в наушниках, которые вы, кстати, тоже можете <a href='https://promo.boxberry.ru/' target='_blank'>выиграть</a> вместе с Boxberry.",
+        "Это победа! В нашей игре вы достигли желаемого. В качестве главного блюда берем вполне реальный, но ценный и многими желанный подарок — iPhone 12. А за настоящий iPhone 12 стоит побороться в <a href='https://promo.boxberry.ru/' class='link' target='_blank'>конкурсе от Boxberry</a>!",
     },
   ];
 }
@@ -202,29 +209,34 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 HTMLActuator.prototype.message = function (won) {
   var type = won ? "game-won" : "game-over";
   var message = won
-    ? "Это победа! В нашей игре вы достигли желаемого. В качестве главного блюда берем вполне реальный, но ценный и многими желанный подарок — iPhone 12. А за настоящий iPhone 12 стоит побороться в <a href='https://promo.boxberry.ru/' target='_blank'>конкурсе от Boxberry</a>!"
+    ? "Это победа! В нашей игре вы достигли желаемого. В качестве главного блюда берем вполне реальный, но ценный и многими желанный подарок — iPhone 12. А за настоящий iPhone 12 стоит побороться в <a href='https://promo.boxberry.ru/' class='link' target='_blank'>конкурсе от Boxberry</a>!"
     : "А мечтам нет предела! Выучить новый язык? Оторваться на концерте любимой группы? Отправиться в путешествие? Если вы вели себя хорошо в этом году, то все должно сбыться, а для верности попробуйте все же дойти до этих подарков в нашей игре!";
 
   this.messageContainer.classList.add(type);
-  this.messageContainer.getElementsByTagName("p")[0].textContent = message;
+  this.messageContainer.getElementsByTagName("p")[0].innerHTML = message;
 };
 
 HTMLActuator.prototype.clearMessage = function () {
   // IE only takes one value to remove at a time.
   this.messageContainer.classList.remove("game-won");
   this.messageContainer.classList.remove("game-over");
+
+  this.messageContainer.getElementsByTagName("h3")[0].textContent = "";
+  this.messageContainer.getElementsByTagName("p")[0].textContent = "";
 };
 
 HTMLActuator.prototype.showPopup = function (cell) {
-  console.error("points", cell.value);
-  // if (!points.includes(cell.value) && cell.value > 2) {
-  console.error("Показываем окно", cell.value);
-  // }
+  // if (cell.value >= 4) {
+  if (cell.value >= 256) {
+    var message = this.results.filter((item) => item.id === cell.value)[0];
 
-  var message = this.results.filter((item) => item.id === cell.value)[0];
+    this.messageContainer.classList.add("game-won");
+    this.messageContainer.getElementsByTagName("h3")[0].textContent =
+      message.title;
+    this.messageContainer.getElementsByTagName("p")[0].innerHTML = message.text;
 
-  this.messageContainer.classList.add("game-won");
-  this.messageContainer.getElementsByTagName("h3")[0].textContent =
-    message.title;
-  this.messageContainer.getElementsByTagName("p")[0].textContent = message.text;
+    setTimeout(() => {
+      this.clearMessage();
+    }, 7000);
+  }
 };

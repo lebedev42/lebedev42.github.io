@@ -1,7 +1,7 @@
 @import "helpers";
 @import "fonts/clear-sans.css";
 
-$field-width: 500px;
+$field-width: 600px;
 $grid-spacing: 15px;
 $grid-row-cells: 4;
 $tile-size: ($field-width - $grid-spacing * ($grid-row-cells + 1)) /
@@ -234,6 +234,16 @@ hr {
         margin-top: 30px;
       }
 
+      .link {
+        display: inline-block;
+        background: transparent;
+        text-decoration: underline;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        line-height: normal;
+      }
+
       a {
         @include button;
         margin-bottom: 10px;
@@ -243,7 +253,7 @@ hr {
         }
       }
 
-      @include animation(fade-in 800ms ease $transition-speed * 12);
+      @include animation(fade-in 200ms ease $transition-speed * 2.2);
       @include animation-fill-mode(both);
 
       &.game-won {
@@ -507,7 +517,7 @@ hr {
 
 @include smaller($mobile-threshold) {
   // Redefine variables for smaller screens
-  $field-width: 280px !global;
+  $field-width: 310px !global;
   $grid-spacing: 10px !global;
   $grid-row-cells: 4 !global;
   $tile-size: ($field-width - $grid-spacing * ($grid-row-cells + 1)) /
@@ -572,12 +582,12 @@ hr {
 
   .game-message {
     h3 {
-      font-size: 19px !important;
-      margin-bottom: 20px !important;
+      font-size: 14px !important;
+      margin: 8px 0 !important;
     }
 
     p {
-      font-size: 15px !important;
+      font-size: 12px !important;
     }
 
     .lower {
