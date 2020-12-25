@@ -89,8 +89,6 @@ function HTMLActuator() {
 HTMLActuator.prototype.actuate = function (grid, metadata) {
   var self = this;
 
-  console.error("bestScore", metadata.bestScore);
-
   window.requestAnimationFrame(function () {
     self.clearContainer(self.tileContainer);
 
@@ -206,7 +204,6 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 };
 
 HTMLActuator.prototype.message = function (won) {
-  console.error("message", won);
   var type = won ? "game-won" : "game-over";
   var title = won ? "Это победа!" : "А мечтам нет предела!";
   var message = won
